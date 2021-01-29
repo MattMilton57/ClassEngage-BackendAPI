@@ -1,6 +1,6 @@
 class Api::V1::ClassPeriodsController < ApplicationController
     # before_action :set_class_period, only: [:show, :update, :destroy]
-    before_action :authorized, except: [:index, :filter]
+    before_action :authorized, except: [:index, :filter, :students]
   
     # GET /class_periods
     def index
@@ -17,8 +17,17 @@ class Api::V1::ClassPeriodsController < ApplicationController
     def filter
         @all = ClassPeriod.all
         @filtered = @all.where(user_id:set_user)
+        # render json: set_user
         render json: @filtered
-        # render json: @filtered
+    end
+
+    def students
+      @registrations = Registration.all
+      @filteredReg = @registrations.where(class_period_id:set_class_search)
+      @students = Student.all
+      @classList = []
+      @filteredReg.each { |reg| @students.each { |s| if s.id == reg.student_id then @classList.push(s) end }}
+      render json: @classList
     end
   
     # POST /class_periods
@@ -53,7 +62,11 @@ class Api::V1::ClassPeriodsController < ApplicationController
       end
 
       def set_user
-        @id = params[:class_period]
+        @id = params[:user_id]
+      end
+
+      def set_class_search
+        @id = params[:class_period_id]
       end
   
       # Only allow a trusted parameter "white list" through.
