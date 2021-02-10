@@ -47,6 +47,7 @@ class Api::V1::RegistrationsController < ApplicationController
     # DELETE /registrations/1
     def destroy
       @registration.destroy
+      render json: {message: "registration successfully deleted"}
     end
   
     private
