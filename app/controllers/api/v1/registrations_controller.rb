@@ -50,12 +50,12 @@ class Api::V1::RegistrationsController < ApplicationController
       render json: {message: "registration successfully deleted"}
     end
 
-    def deleteStudentAssessments
+    def deleteStudentRegistrations
       @registrations = Registration.all
       # Assessment.where(student_id:set_student).destroy_all
       @studentsRegistrations = @aregistrations.where(student_id:set_student)
       @studentsRegistrations.destroy_all
-      render json: (message: "registrations destroyed")
+      render json: "registrations destroyed"
     end
   
     private

@@ -56,7 +56,7 @@ class Api::V1::AssessmentsController < ApplicationController
       # Assessment.where(student_id:set_student).destroy_all
       @studentsAssessments = @assessments.where(student_id:set_student)
       @studentsAssessments.destroy_all
-      render json: (message: "assessments destroyed")
+      render json: "assessments destroyed"
     end
   
     private
