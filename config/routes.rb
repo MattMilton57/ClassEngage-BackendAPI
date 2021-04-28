@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       post '/classList', to: 'class_periods#students'
       post '/classAssessments', to: 'assessments#classAssessments'
       post '/studentAssessments', to: 'assessments#studentAssessments'
+      post '/deleteStudentAssessments', to: 'assessments#deleteStudentAssessments'
+      post '/deleteStudentRegistrations', to: 'registrations#deleteStudentRegistrations'
 
       get 'profile', to: 'users#profile'
       get '/current_user', to: 'auth#show'

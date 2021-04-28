@@ -49,6 +49,14 @@ class Api::V1::RegistrationsController < ApplicationController
       @registration.destroy
       render json: {message: "registration successfully deleted"}
     end
+
+    def deleteStudentAssessments
+      @registrations = Registration.all
+      # Assessment.where(student_id:set_student).destroy_all
+      @studentsRegistrations = @aregistrations.where(student_id:set_student)
+      @studentsRegistrations.destroy_all
+      render json: (message: "registrations destroyed")
+    end
   
     private
       # Use callbacks to share common setup or constraints between actions.

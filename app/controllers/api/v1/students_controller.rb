@@ -37,6 +37,7 @@ class Api::V1::StudentsController < ApplicationController
     # DELETE /students/1
     def destroy
       @student.destroy
+      render json: {message: "student successfully deleted"}
     end
   
     private

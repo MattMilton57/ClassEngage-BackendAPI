@@ -50,6 +50,14 @@ class Api::V1::AssessmentsController < ApplicationController
     def destroy
       @assessment.destroy
     end
+
+    def deleteStudentAssessments
+      @assessments = Assessment.all
+      # Assessment.where(student_id:set_student).destroy_all
+      @studentsAssessments = @assessments.where(student_id:set_student)
+      @studentsAssessments.destroy_all
+      render json: (message: "assessments destroyed")
+    end
   
     private
       # Use callbacks to share common setup or constraints between actions.
