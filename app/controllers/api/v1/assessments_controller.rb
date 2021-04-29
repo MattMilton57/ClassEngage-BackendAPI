@@ -1,5 +1,5 @@
 class Api::V1::AssessmentsController < ApplicationController
-    # before_action :set_assessment, only: [:show, :update, :destroy]
+    before_action :set_assessment, only: [:show, :update, :destroy]
     before_action :authorized, except: [:index, :filter,]
 
     # GET /assessments
@@ -49,6 +49,7 @@ class Api::V1::AssessmentsController < ApplicationController
     # DELETE /assessments/1
     def destroy
       @assessment.destroy
+      render json: {message: "registration successfully deleted"}
     end
 
     def deleteStudentAssessments
@@ -56,7 +57,15 @@ class Api::V1::AssessmentsController < ApplicationController
       # Assessment.where(student_id:set_student).destroy_all
       @studentsAssessments = @assessments.where(student_id:set_student)
       @studentsAssessments.destroy_all
-      render json: "assessments destroyed"
+      render json: {message: "assessments destroyed"}
+    end
+
+    def deleteClassPeriodAssessments
+      @assessments = Assessment.all
+      # Assessment.where(student_id:set_student).destroy_all
+      @classPeriodsAssessments = @assessments.where(class_period_id:set_class_period)
+      @classPeriodsAssessments.destroy_all
+      render json: {message: "class period registrations successfully deleted"}
     end
   
     private
@@ -80,3 +89,6 @@ class Api::V1::AssessmentsController < ApplicationController
   
       end
 end
+
+
+

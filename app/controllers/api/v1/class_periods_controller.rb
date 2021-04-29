@@ -1,5 +1,5 @@
 class Api::V1::ClassPeriodsController < ApplicationController
-    # before_action :set_class_period, only: [:show, :update, :destroy]
+    before_action :set_class_period, only: [:show, :update, :destroy]
     before_action :authorized, except: [:index, :filter, :students]
   
     # GET /class_periods
@@ -53,6 +53,7 @@ class Api::V1::ClassPeriodsController < ApplicationController
     # DELETE /class_periods/1
     def destroy
       @class_period.destroy
+      render json: {message: "class period successfully deleted"}
     end
   
     private

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :users, :auth, :class_periods, :students, :registrations, :assessments, only: [:create, :index, :show, :filter, :destroy]
+      resources :users, :auth, :class_periods, :students, :registrations, :assessments, only: [:create, :index, :show, :filter, :update, :destroy, :destroy_all]
       post '/login',  to: 'auth#create'
       post '/class_periods', to: 'class_periods#create'
       post '/filterCP', to: 'class_periods#filter'
@@ -10,7 +10,9 @@ Rails.application.routes.draw do
       post '/classAssessments', to: 'assessments#classAssessments'
       post '/studentAssessments', to: 'assessments#studentAssessments'
       post '/deleteStudentAssessments', to: 'assessments#deleteStudentAssessments'
+      post '/deleteClassPeriodAssessments', to: 'assessments#deleteClassPeriodAssessments'
       post '/deleteStudentRegistrations', to: 'registrations#deleteStudentRegistrations'
+      post '/deleteClassPeriodRegistrations', to: 'registrations#deleteClassPeriodRegistrations'
 
       get 'profile', to: 'users#profile'
       get '/current_user', to: 'auth#show'

@@ -53,15 +53,27 @@ class Api::V1::RegistrationsController < ApplicationController
     def deleteStudentRegistrations
       @registrations = Registration.all
       # Assessment.where(student_id:set_student).destroy_all
-      @studentsRegistrations = @aregistrations.where(student_id:set_student)
+      @studentsRegistrations = @registrations.where(student_id:set_student)
       @studentsRegistrations.destroy_all
-      render json: "registrations destroyed"
+      render json: {message: "registration successfully deleted"}
+    end
+
+    def deleteClassPeriodRegistrations
+      @registrations = Registration.all
+      # Assessment.where(student_id:set_student).destroy_all
+      @classPeriodsRegistrations = @registrations.where(class_period_id:set_class_period)
+      @classPeriodsRegistrations.destroy_all
+      render json: {message: "registration successfully deleted"}
     end
   
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_registration
         @registration = Registration.find(params[:id])
+      end
+
+      def set_student
+        @id = params[:student_id]
       end
 
       def set_class_period
