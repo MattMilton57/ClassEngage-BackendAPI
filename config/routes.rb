@@ -18,10 +18,9 @@ Rails.application.routes.draw do
       get 'profile', to: 'users#profile'
       get '/current_user', to: 'auth#show'
       get '/current_student/:id',  to: 'students#show'
+      get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+          !request.xhr? && request.format.html?
+        end
     end
   end
 end
-
-get '*path', to: "application#fallback_index_html", constraints: ->(request) do
-    !request.xhr? && request.format.html?
-  end
