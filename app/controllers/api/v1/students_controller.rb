@@ -13,6 +13,12 @@ class Api::V1::StudentsController < ApplicationController
     def show
       render json: @student
     end
+
+    def usersStudents
+      @students = Student.all
+      @usersStudents = @students.where(user_id:set_user)
+      render json: @usersStudents
+    end
   
     # POST /students
     def create
@@ -45,10 +51,14 @@ class Api::V1::StudentsController < ApplicationController
       def set_student
         @student = Student.find(params[:id])
       end
+
+      def set_user
+        @id = params[:user_id]
+      end
   
       # Only allow a trusted parameter "white list" through.
       def student_params
-        params.require(:student).permit(:name)
+        params.require(:student).permit(:name, :user_id)
       end
   
 end

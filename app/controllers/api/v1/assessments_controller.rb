@@ -85,7 +85,7 @@ class Api::V1::AssessmentsController < ApplicationController
       # Only allow a trusted parameter "white list" through.
       def assessment_params
         # params.require(:assessment).permit(:participating)
-        params.require(:assessment).permit(:class_period_id, :student_id, :participating, :comment)
+        params.require(:assessment).permit(:class_period_id, :student_id, :user_id, :participating, :comment)
   
       end
 end

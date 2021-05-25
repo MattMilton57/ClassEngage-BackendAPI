@@ -72,6 +72,6 @@ class Api::V1::ClassPeriodsController < ApplicationController
   
       # Only allow a trusted parameter "white list" through.
       def class_period_params
-        params.require(:class_period).permit(:subject, :user_id, :period, :level)
+        params.require(:class_period).permit(:subject, :user_id, :period, :level, :max)
       end
   end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post '/filterR', to: 'registrations#filter' 
       post '/classList', to: 'class_periods#students'
       post '/classAssessments', to: 'assessments#classAssessments'
+      post '/filterStudents', to: 'students#usersStudents'      
       post '/studentAssessments', to: 'assessments#studentAssessments'
       post '/deleteStudentAssessments', to: 'assessments#deleteStudentAssessments'
       post '/deleteClassPeriodAssessments', to: 'assessments#deleteClassPeriodAssessments'
