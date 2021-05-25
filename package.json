@@ -1,0 +1,18 @@
+{
+  "name": "backendAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MattMilton57/ClassEngage-BackendAPI.git",
+  "author": "<github username> <<github email address>>",
+  "license": "MIT",
+  "scripts": {
+    "build": "cd client && yarn install && yarn build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
+  },
+  "engines": {
+    "yarn": "1.22.0",
+    "npm": "6.14.6",
+    "node": "12.18.3"
+  }
+}
