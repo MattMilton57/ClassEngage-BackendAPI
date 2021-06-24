@@ -24,7 +24,8 @@ class Api::V1::AssessmentsController < ApplicationController
         render json: @assessment.errors, status: :unprocessable_entity
       end
     end
-    
+
+    # POST /classAssessments
     def classAssessments
         @assessments = Assessment.all
         @classesAssessments = @assessments.where(class_period_id:set_class_period)
